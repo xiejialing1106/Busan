@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2027 春遊釜山｜5天4夜 樂齡海景海鮮慢旅</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans TC & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'Inter', 'sans-serif'],
+            kr: ['"Noto Sans KR"', '"Noto Sans TC"', 'sans-serif'],
+          },
+          colors: {
+            ocean: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            sakura: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+            },
+            sand: {
+              50: '#fdfcf9',
+              100: '#f8f5ee',
+              200: '#efe9dc',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 基礎平滑捲動與字體縮放支援 */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      transition: font-size 0.2s ease;
+    }
+
+    /* 長輩友善大字體模式 */
+    html.large-font {
+      font-size: 19px;
+    }
+
+    @media (min-width: 768px) {
+      html.large-font {
+        font-size: 20px;
+      }
+    }
+
+    body {
+      background-color: #fdfcf9;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 春日海濱漸層背景 */
+    .hero-gradient {
+      background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 55%, #f9a8d4 100%);
+    }
+
+    /* 飄落櫻花裝飾動畫 */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(6deg); }
+    }
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    /* 隱藏橫向捲軸但保留滑動功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 彈窗進場動畫 */
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-animate {
+      animation: modalPop 0.22s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-sakura-200 selection:text-ocean-900">
+
+  <!-- 頂部導覽列：品牌標題 + 長輩大字體切換 -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-sand-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="text-2xl flex-shrink-0" aria-hidden="true">🌊</span>
+        <div class="truncate">
+          <h1 class="text-base sm:text-lg font-black text-ocean-900 tracking-tight truncate">2027 春遊釜山</h1>
+          <p class="text-xs text-slate-500 font-medium hidden sm:block">5天4夜 樂齡海景・不辣海鮮慢旅</p>
+        </div>
+      </div>
+
+      <!-- 字體大小切換按鈕 -->
+      <div class="flex items-center bg-sand-100 p-1 rounded-full border border-sand-200 flex-shrink-0" role="group" aria-label="字體大小切換">
+        <button id="btnFontNormal" onclick="setFontSize('normal')"
+          class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-ocean-600 text-white shadow-sm">
+          標準字
+        </button>
+        <button id="btnFontLarge" onclick="setFontSize('large')"
+          class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all text-slate-700 hover:text-ocean-700">
+          大字體 A+
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 春季海濱主視覺 Hero 區塊 -->
+  <section class="hero-gradient text-white relative overflow-hidden">
+    <!-- 柔和裝飾光暈 -->
+    <div class="absolute -top-12 -right-12 w-56 h-56 bg-white/15 rounded-full blur-2xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -left-10 w-64 h-64 bg-sakura-200/25 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-4 py-8 sm:py-12 relative z-10">
+      <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold mb-4">
+        <span>🌸 2027年 3–4月 春季賞櫻</span>
+        <span class="opacity-60">|</span>
+        <span>👨‍👩‍👧‍👦 家庭長輩友善</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-4xl font-black leading-tight tracking-tight mb-3 drop-shadow-sm">
+        釜山 5 天 4 夜<br class="sm:hidden"> 樂齡海景海鮮慢旅
+      </h2>
+      <p class="text-ocean-50 text-sm sm:text-base max-w-2xl leading-relaxed mb-6 font-medium">
+        專為熱愛大海與鮮甜海鮮、不吃辣的家人設計。全程少爬坡、多利用計程車、膠囊列車與海上纜車，用最舒服的步調看海、賞櫻、大啖鮮美原味料理。
+      </p>
+
+      <!-- 核心特色標籤 -->
+      <div class="flex flex-wrap gap-2">
+        <span class="bg-white/95 text-ocean-900 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold shadow-sm">🚕 計程車韓文指指卡</span>
+        <span class="bg-white/95 text-sakura-600 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold shadow-sm">🦀 全程不辣海鮮美食</span>
+        <span class="bg-white/95 text-emerald-800 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold shadow-sm">🚡 少走路輕鬆賞海景</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主分頁導覽列 -->
+  <nav class="bg-white border-b border-sand-200 sticky top-[57px] sm:top-[61px] z-30 shadow-sm">
+    <div class="max-w-5xl mx-auto px-3 sm:px-4">
+      <div class="grid grid-cols-3 gap-1.5 py-2.5">
+        <button onclick="switchMainTab('itinerary')" id="tab-itinerary"
+          class="main-tab-btn flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-2 rounded-2xl text-xs sm:text-base font-bold transition-all bg-ocean-600 text-white shadow-md">
+          <span class="text-lg">🗓️</span>
+          <span>每日行程</span>
+        </button>
+        <button onclick="switchMainTab('food')" id="tab-food"
+          class="main-tab-btn flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-2 rounded-2xl text-xs sm:text-base font-bold transition-all bg-sand-100 text-slate-700 hover:bg-ocean-50">
+          <span class="text-lg">🦐</span>
+          <span>不辣美食＆點餐卡</span>
+        </button>
+        <button onclick="switchMainTab('prep')" id="tab-prep"
+          class="main-tab-btn flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-2 rounded-2xl text-xs sm:text-base font-bold transition-all bg-sand-100 text-slate-700 hover:bg-ocean-50">
+          <span class="text-lg">🧳</span>
+          <span>行前準備＆攻略</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主內容容器 -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-6 sm:py-8">
+
+    <!-- ==================== 分頁 1：每日行程 ==================== -->
+    <section id="panel-itinerary" class="space-y-6">
+
+      <!-- 住宿建議卡片 -->
+      <div class="bg-gradient-to-r from-ocean-50 to-sakura-50 border border-ocean-200/80 rounded-3xl p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-1.5 text-ocean-800 font-black text-sm">
+            <span>🏨 推薦連住區域：海雲台海灘周邊（해운대 해수욕장）</span>
+          </div>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            地勢完全平坦、五星與海景飯店選擇多，推開窗就能看海，周邊不辣美食與咖啡廳林立，長輩累了隨時能回房休息，4晚不換飯店最輕鬆！
+          </p>
+        </div>
+        <button onclick="openTaxiModal('海雲台海灘周邊飯店', '해운대 해수욕장', '부산 해운대구 우동 해운대해변로 264', '若已預訂好飯店，建議將飯店韓文名稱截圖備用')"
+          class="flex-shrink-0 bg-white hover:bg-ocean-600 hover:text-white text-ocean-700 border-2 border-ocean-600 font-bold px-4 py-2.5 rounded-2xl text-sm transition-all shadow-sm flex items-center justify-center gap-2">
+          <span>🚕</span>
+          <span>海雲台指指卡</span>
+        </button>
+      </div>
+
+      <!-- Day 切換篩選列 -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" role="tablist" aria-label="選擇天數">
+        <button onclick="filterDay('all')" data-day="all" class="day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-ocean-700 text-white shadow-sm">
+          顯示全部 (5天)
+        </button>
+        <button onclick="filterDay(1)" data-day="1" class="day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-white text-slate-700 border border-sand-200 hover:border-ocean-400">
+          Day 1 海雲台慢步
+        </button>
+        <button onclick="filterDay(2)" data-day="2" class="day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-white text-slate-700 border border-sand-200 hover:border-ocean-400">
+          Day 2 膠囊＆長腳蟹
+        </button>
+        <button onclick="filterDay(3)" data-day="3" class="day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-white text-slate-700 border border-sand-200 hover:border-ocean-400">
+          Day 3 纜車＆札嘎其
+        </button>
+        <button onclick="filterDay(4)" data-day="4" class="day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-white text-slate-700 border border-sand-200 hover:border-ocean-400">
+          Day 4 賞櫻＆汗蒸幕
+        </button>
+        <button onclick="filterDay(5)" data-day="5" class="day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-white text-slate-700 border border-sand-200 hover:border-ocean-400">
+          Day 5 採買＆返家
+        </button>
+      </div>
+
+      <!-- 動態渲染行程列表容器 -->
+      <div id="itineraryContainer" class="space-y-8"></div>
+
+    </section>
+
+    <!-- ==================== 分頁 2：不辣海鮮美食＆點餐卡 ==================== -->
+    <section id="panel-food" class="hidden space-y-8">
+
+      <!-- 韓文點餐求助卡專區 -->
+      <div class="bg-sakura-50/80 border border-sakura-200 rounded-3xl p-5 sm:p-6 shadow-sm">
+        <div class="flex items-start gap-3 mb-4">
+          <span class="text-3xl">🗣️</span>
+          <div>
+            <h3 class="text-xl font-black text-slate-900">韓文點餐求助卡（點擊放大給店員看）</h3>
+            <p class="text-sm text-slate-600 mt-1">韓國料理常會加辣椒粉或辣醬，點餐時直接點選下方卡片，就會放大成超清楚的韓文畫面，不用怕語言不通！</p>
+          </div>
+        </div>
+
+        <div id="orderingCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <!-- JS 動態生成 -->
+        </div>
+      </div>
+
+      <!-- 精選釜山不辣必吃料理 -->
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="text-2xl">🦀</span>
+          <div>
+            <h3 class="text-xl font-black text-ocean-900">精選釜山「完全不辣」必吃清單</h3>
+            <p class="text-sm text-slate-600">鮮甜、暖胃、長輩接受度 100%，點擊料理也能放大韓文點餐名稱。</p>
+          </div>
+        </div>
+
+        <div id="foodListGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- JS 動態生成 -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 分頁 3：行前準備＆貼心提醒 ==================== -->
+    <section id="panel-prep" class="hidden space-y-8">
+
+      <!-- 互動式打包清單 -->
+      <div class="bg-white border border-sand-200 rounded-3xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <div>
+            <h3 class="text-xl font-black text-ocean-900 flex items-center gap-2">
+              <span>✅</span> 樂齡春遊互動打包清單
+            </h3>
+            <p class="text-sm text-slate-600 mt-1">勾選項目會自動儲存在這支手機／電腦裡，不怕忘記帶東西。</p>
+          </div>
+          <button onclick="resetChecklist()" class="self-start sm:self-center text-xs font-bold text-slate-500 hover:text-sakura-600 bg-sand-100 px-3 py-1.5 rounded-xl transition-colors">
+            ↺ 重新勾選
+          </button>
+        </div>
+
+        <!-- 進度條 -->
+        <div class="bg-sand-100 rounded-2xl p-4 mb-5">
+          <div class="flex justify-between items-center text-sm font-bold mb-2">
+            <span class="text-ocean-900">打包完成度</span>
+            <span id="checklistProgressText" class="text-ocean-700">0 / 0 (0%)</span>
+          </div>
+          <div class="w-full bg-white h-3.5 rounded-full overflow-hidden border border-sand-200">
+            <div id="checklistProgressBar" class="h-full bg-gradient-to-r from-ocean-500 to-sakura-400 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- 清單項目容器 -->
+        <div id="checklistContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <!-- JS 動態生成 -->
+        </div>
+      </div>
+
+      <!-- 3-4 月釜山貼心攻略卡片 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 天氣穿搭 -->
+        <div class="bg-ocean-50/70 border border-ocean-200 rounded-3xl p-5 space-y-2.5">
+          <div class="text-2xl">🌤️</div>
+          <h4 class="text-lg font-black text-ocean-900">3–4 月天氣與洋蔥穿搭</h4>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            氣溫約 <strong>8°C～18°C</strong>，白天出太陽舒適微涼，但<strong>海邊（海雲台、松島、青沙浦）風勢較大</strong>，日夜溫差明顯。建議長輩採洋蔥式穿法：透氣長袖＋輕羽絨或防風外套＋輕薄圍巾，進室內好穿脫。
+          </p>
+        </div>
+
+        <!-- 預約提醒 -->
+        <div class="bg-sakura-50/70 border border-sakura-200 rounded-3xl p-5 space-y-2.5">
+          <div class="text-2xl">🎟️</div>
+          <h4 class="text-lg font-black text-sakura-700">天空膠囊列車必提早預約</h4>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            海雲台藍線公園「<strong>尾浦 → 青沙浦</strong>」天空膠囊列車超級熱門！務必在出發前 <strong>2～4 週</strong>上官網預訂（每台車可坐 2～4 人，剛好全家包一台）。建議選上午 10:00～11:00 時段，海景最亮麗。
+          </p>
+        </div>
+
+        <!-- 叫車攻略 -->
+        <div class="bg-amber-50/70 border border-amber-200 rounded-3xl p-5 space-y-2.5">
+          <div class="text-2xl">🚕</div>
+          <h4 class="text-lg font-black text-amber-900">釜山叫車攻略（長輩救星）</h4>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            釜山計程車起跳約 4,800 韓元（約台幣 115 元），3～4 人分攤非常划算！強烈建議在台灣先下載 <strong>Uber（在韓國即 UT）</strong>或 <strong>Kakao T</strong> 綁定信用卡，不用跟司機報路；若在路邊攔車，直接打開本網頁的「韓文指指卡」即可！
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="bg-sand-100 border-t border-sand-200 mt-10 py-6 px-4 text-center">
+    <p class="text-sm font-bold text-ocean-900">🌸 祝您與家人 2027 春遊釜山平安順心、吃遍鮮甜海味！ 🌊</p>
+    <p class="text-xs text-slate-500 mt-1">提示：建議將此網頁加入手機主畫面，旅途中隨時可開啟指指卡與點餐卡。</p>
+  </footer>
+
+  <!-- ==================== 彈窗 1：計程車韓文指指卡 Modal ==================== -->
+  <div id="taxiModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/75 backdrop-blur-sm" onclick="closeModalOnBackdrop(event, 'taxiModal')">
+    <div class="modal-animate bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-400">
+      <!-- 頂部黃色計程車識別條 -->
+      <div class="bg-amber-400 px-5 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-slate-900">
+          <span class="text-2xl">🚕</span>
+          <span class="font-black text-base sm:text-lg">計程車韓文指指卡</span>
+        </div>
+        <button onclick="closeModal('taxiModal')" class="w-9 h-9 rounded-full bg-slate-900/15 hover:bg-slate-900/25 flex items-center justify-center font-black text-slate-900 text-lg" aria-label="關閉">
+          ✕
+        </button>
+      </div>
+
+      <!-- 超大字體韓文內容（給司機看） -->
+      <div class="p-6 sm:p-8 text-center space-y-5">
+        <div class="inline-block bg-amber-100 text-amber-900 px-4 py-1.5 rounded-full text-sm font-bold font-kr">
+          기사님, 여기로 가주세요. (司機您好，請載我們到這裡)
+        </div>
+
+        <div class="py-3 border-y-2 border-dashed border-slate-200 space-y-3">
+          <p id="taxiKrName" class="font-kr text-3xl sm:text-4xl font-black text-slate-950 leading-snug break-keep"></p>
+          <p id="taxiKrAddress" class="font-kr text-lg sm:text-xl font-bold text-ocean-800 leading-relaxed"></p>
+        </div>
+
+        <div class="text-left bg-sand-100 rounded-2xl p-3.5 text-sm text-slate-700 space-y-1">
+          <p><span class="font-bold text-slate-900">📍 中文地點：</span><span id="taxiZhName"></span></p>
+          <p id="taxiNoteWrap" class="hidden"><span class="font-bold text-slate-900">💡 備註：</span><span id="taxiNote"></span></p>
+        </div>
+
+        <!-- 複製地址與關閉按鈕 -->
+        <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+          <button onclick="copyTaxiAddress()" class="flex-1 bg-ocean-600 hover:bg-ocean-700 text-white font-bold py-3.5 px-4 rounded-2xl transition-all shadow-sm flex items-center justify-center gap-2">
+            <span>📋</span> 複製韓文地址（貼到 Uber / Naver Map）
+          </button>
+          <button onclick="closeModal('taxiModal')" class="sm:w-28 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3.5 px-4 rounded-2xl transition-all">
+            關閉
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 彈窗 2：韓文點餐求助卡 Modal ==================== -->
+  <div id="orderModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/75 backdrop-blur-sm" onclick="closeModalOnBackdrop(event, 'orderModal')">
+    <div class="modal-animate bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border-4 border-sakura-400">
+      <div class="bg-sakura-500 px-5 py-4 flex items-center justify-between text-white">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🍽️</span>
+          <span class="font-black text-base sm:text-lg">韓文點餐卡（請直接給店員看）</span>
+        </div>
+        <button onclick="closeModal('orderModal')" class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center font-black text-white text-lg" aria-label="關閉">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 sm:p-8 text-center space-y-5">
+        <div id="orderEmoji" class="text-5xl"></div>
+        <div class="py-4 border-y-2 border-dashed border-sakura-200 space-y-3">
+          <p id="orderKrText" class="font-kr text-3xl sm:text-4xl font-black text-slate-950 leading-snug break-keep"></p>
+          <p id="orderPronounce" class="text-sm font-medium text-slate-500"></p>
+        </div>
+        <div class="bg-sakura-50 rounded-2xl p-4">
+          <p id="orderZhText" class="text-lg font-black text-sakura-700"></p>
+          <p id="orderSubText" class="text-sm text-slate-600 mt-1"></p>
+        </div>
+        <button onclick="closeModal('orderModal')" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 rounded-2xl transition-all">
+          看完了，關閉卡片
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 輕量提示 Toast（取代 alert） -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl font-bold text-sm opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+    <span>✅</span>
+    <span id="toastMsg">已複製到剪貼簿</span>
+  </div>
+
+  <script>
+    /* ============================================================
+       1. 完整 5 天 4 夜行程資料庫
+       ============================================================ */
+    const itineraryData = [
+      {
+        day: 1,
+        title: "抵達釜山・海雲台海風慢步",
+        subtitle: "不趕行程、不拖行李轉車，輕鬆迎接大海與暖胃鮑魚粥",
+        themeColor: "ocean",
+        items: [
+          {
+            time: "下午 14:30",
+            nameZh: "金海國際機場 → 海雲台飯店",
+            nameKr: "김해국제공항 → 해운대",
+            addressKr: "부산 강서구 공항진입로 108",
+            badges: ["🚕 專車／計程車直達", "🧳 免搬行李轉地鐵"],
+            transport: "建議出關後直接搭乘大型計程車或事先預約機場接送，約 45–60 分鐘直達海雲台飯店放行李，長輩最省力。",
+            foodTip: "飯店辦理入住後，先在房間稍作休息、喝杯熱茶再出門散步。",
+            taxiNote: "此為機場地址；去飯店請改示飯店韓文地址"
+          },
+          {
+            time: "傍晚 16:30",
+            nameZh: "海雲台海水浴場 & 冬柏島海岸散步路",
+            nameKr: "해운대 해수욕장 & 동백섬",
+            addressKr: "부산 해운대구 우동 710-1 (동백섬 입구)",
+            badges: ["🪵 全程平緩木棧道", "🌅 絕美夕陽海景", "🪑 沿途多長椅"],
+            transport: "從海雲台飯店步行即可抵達沙灘西側的冬柏島入口，沿著平坦海岸木棧道散步，可遠眺廣安大橋與美人魚像。",
+            foodTip: "傍晚海風微涼，記得幫長輩加上防風薄外套。",
+            taxiNote: "請司機放在冬柏島入口（威斯汀朝鮮飯店旁），走起來最輕鬆"
+          },
+          {
+            time: "晚餐 18:30",
+            nameZh: "海雲台元祖鮑魚粥 或 釜山豬肉湯飯",
+            nameKr: "원조전복죽 (해운대점)",
+            addressKr: "부산 해운대구 달맞이길62번길 38",
+            badges: ["🥣 完全不辣", "👵 長輩最愛暖胃料理"],
+            transport: "從海雲台沙灘搭計程車 5 分鐘即達，或選擇海雲台大街上的知名豬肉湯飯（如密陽血腸豬肉湯飯）。",
+            foodTip: "首推【元祖鮑魚粥】鮮甜滑順、入口即化；若吃豬肉湯飯，記得請店家「不要放辣醬（다대기 빼주세요）」，原味大骨湯加點蝦醬就超鮮美！",
+            taxiNote: "海雲台老字號鮑魚粥名店"
+          }
+        ]
+      },
+      {
+        day: 2,
+        title: "東釜山絕美海景・膠囊列車與長腳蟹大餐",
+        subtitle: "高空緩慢看海零負擔，下午直奔機張市場大啖清蒸活蟹",
+        themeColor: "sakura",
+        items: [
+          {
+            time: "上午 10:00",
+            nameZh: "海雲台藍線公園 尾浦站（天空膠囊列車）",
+            nameKr: "해운대블루라인파크 미포정거장",
+            addressKr: "부산 해운대구 달맞이길62번길 13",
+            badges: ["🚃 全程搭車看海", "🛗 有電梯直達月台", "🎟️ 需提早預約"],
+            transport: "從海雲台飯店搭計程車約 5 分鐘抵達尾浦站。搭乘彩色「天空膠囊列車」前往青沙浦，車程約 30 分鐘，獨立包廂悠閒賞海景。",
+            foodTip: "建議預訂 10:00 或 10:30 班次，光線拍大海最藍！",
+            taxiNote: "天空膠囊列車起點：尾浦站"
+          },
+          {
+            time: "中午 11:30",
+            nameZh: "青沙浦紅白燈塔 & 原味炭烤貝殼",
+            nameKr: "청사포 조개구이 거리",
+            addressKr: "부산 해운대구 청사포로 128번길 일대",
+            badges: ["🗼 平緩海邊拍照", "🐚 原味起司烤貝殼"],
+            transport: "膠囊列車終點站下車即達青沙浦！平緩散步至紅白雙胞胎燈塔拍照，直接挑一家海景烤貝殼店享用午餐。",
+            foodTip: "點餐時請出示不辣卡，請店員做「原味奶油／起司烤扇貝與蛤蜊」，免沾辣醬就超鮮甜，通常還有店員協助代烤。",
+            taxiNote: "青沙浦烤貝殼海景街"
+          },
+          {
+            time: "下午 14:30",
+            nameZh: "機張市場（清蒸活體松葉蟹／長腳蟹）",
+            nameKr: "기장시장",
+            addressKr: "부산 기장군 기장읍 읍내로104번길 16",
+            badges: ["🦀 清蒸鮮甜完全不辣", "🚕 計程車直達市場口"],
+            transport: "從青沙浦搭計程車約 15–20 分鐘直達機張市場。一樓挑選活跳跳的松葉蟹／長腳蟹，直接上樓吹冷氣等現蒸上桌。",
+            foodTip: "必吃【清蒸長腳蟹】＋【蟹膏炒飯（게딱지 볶음밥）】！肉質飽滿鮮甜、完全不辣，蟹腳店家都會幫忙剪好方便長輩食用。",
+            taxiNote: "機張市場主入口（蟹街）"
+          },
+          {
+            time: "傍晚 17:30",
+            nameZh: "釜山 X the Sky 觀景台（99樓星巴克）",
+            nameKr: "부산 엑스더스카이",
+            addressKr: "부산 해운대구 달맞이길 30",
+            badges: ["🛗 高速電梯直達", "☕ 坐著喝咖啡看夜景"],
+            transport: "從機張市場搭計程車回海雲台 LCT 大樓（約 25 分鐘）。搭高速電梯 56 秒直達 99 樓，免爬山就能 360 度俯瞰海雲台日落與百萬夜景。",
+            foodTip: "在全世界最高的星巴克點杯熱拿鐵或花茶歇腳，傍晚逛完直接步行或搭車回飯店休息。",
+            taxiNote: "海雲台 LCT 觀景台入口"
+          }
+        ]
+      },
+      {
+        day: 3,
+        title: "松島海上纜車・札嘎其鮮魚市場・南浦洞悠閒逛",
+        subtitle: "飛越碧藍海灣、品嚐現挑現煮鮮魚，漫步熱鬧平緩的老城區",
+        themeColor: "ocean",
+        items: [
+          {
+            time: "上午 10:00",
+            nameZh: "松島海上纜車（松島灣站）",
+            nameKr: "송도해상케이블카 송도베이스테이션",
+            addressKr: "부산 서구 송도해변로 171",
+            badges: ["🚡 空中橫越大海", "♿ 無障礙友善空間"],
+            transport: "從海雲台搭計程車約 35–40 分鐘（行經海景大橋風景很美）。若長輩怕透明地板，可選「一般車廂（Air Cruise）」，平穩又舒適。",
+            foodTip: "對岸岩南公園站有平緩觀景台與咖啡廳，拍照休息後再搭纜車返回。",
+            taxiNote: "松島海上纜車搭乘處"
+          },
+          {
+            time: "中午 12:30",
+            nameZh: "札嘎其海鮮市場",
+            nameKr: "자갈치시장",
+            addressKr: "부산 중구 자갈치해안로 52",
+            badges: ["🐟 室內平緩好逛", "❄️ 二樓吹冷氣代客料理"],
+            transport: "從松島纜車搭計程車僅約 10 分鐘即達。一樓逛逛生猛海鮮挑選喜歡的魚貨，搭電梯到二樓餐廳代客料理。",
+            foodTip: "推薦【綜合生魚片、清蒸鮑魚、原味烤鯖魚／白帶魚】，若點海鮮魚湯務必出示點餐卡要求「清湯不辣（지리탕 / 안 맵게）」！",
+            taxiNote: "札嘎其市場現代化大樓正門"
+          },
+          {
+            time: "下午 14:30",
+            nameZh: "南浦洞 BIFF 廣場 & 光復路平緩散步",
+            nameKr: "남포동 BIFF 광장",
+            addressKr: "부산 중구 비프광장로 36",
+            badges: ["🚶 全程平路無階梯", "🥞 不辣堅果黑糖餅"],
+            transport: "從札嘎其市場過馬路慢步 5 分鐘即達。逛街累了隨時可進光復路上的復古茶房或咖啡廳坐著喝茶，約 17:00 輕鬆搭計程車返回海雲台。",
+            foodTip: "必吃名產【元祖堅果黑糖餅（씨앗호떡）】，酥脆外皮包滿葵花子、南瓜子與黑糖蜜，香甜不膩完全不辣！",
+            taxiNote: "南浦洞 BIFF 廣場入口"
+          }
+        ]
+      },
+      {
+        day: 4,
+        title: "春季賞櫻漫步・汗蒸幕舒壓・廣安里海景之夜",
+        subtitle: "3-4月限定粉紅櫻花河岸，下午五星溫泉徹底放鬆雙腳",
+        themeColor: "sakura",
+        items: [
+          {
+            time: "上午 09:30",
+            nameZh: "溫泉川咖啡廳街（春季賞櫻河岸）",
+            nameKr: "온천천 카페거리",
+            addressKr: "부산 동래구 온천천카페로 일대",
+            badges: ["🌸 3-4月滿開櫻花隧道", "🚶 平坦河岸步道", "☕ 隨時歇腳"],
+            transport: "從海雲台搭計程車約 25 分鐘。釜山在地人最愛的平緩賞櫻勝地，完全不用爬山，河堤兩側開滿粉嫩櫻花，走累了馬上進河景咖啡廳喝杯飲料。",
+            foodTip: "若出發日期櫻花較晚開，也可視花況改去海雲台迎月路平緩段賞海景櫻花。",
+            taxiNote: "溫泉川咖啡廳街（安樂橋附近）"
+          },
+          {
+            time: "中午 12:00",
+            nameZh: "釜山水冷麵 或 滋補人參雞湯",
+            nameKr: "부산 물밀면 / 삼계탕",
+            addressKr: "부산 해운대구 센텀남대로 35 (신세계 센텀시티)",
+            badges: ["🍜 清爽不辣", "🍲 溫潤補氣"],
+            transport: "賞櫻後搭計程車約 15 分鐘前往 Centum City 新世界百貨，百貨美食街與周邊有許多知名不辣餐廳，環境寬敞乾淨好坐。",
+            foodTip: "【釜山水冷麵（물밀면）】點餐時記得請店家「不要放辣醬（양념장 빼주세요）」；偏愛熱食的長輩則大推【滋補人參雞湯（삼계탕）】暖心又補氣。",
+            taxiNote: "新世界百貨 Centum City 店"
+          },
+          {
+            time: "下午 14:00",
+            nameZh: "新世界百貨 & Spa Land 五星級汗蒸幕",
+            nameKr: "스파랜드 센텀시티",
+            addressKr: "부산 해운대구 센텀남대로 35 신세계백화점 1층",
+            badges: ["♨️ 溫泉足湯消除疲勞", "🛋️ 躺椅＆按摩椅休息"],
+            transport: "就在新世界百貨 1 樓！設施超新、空間寬敞不擁擠，長輩可以在戶外免費泡溫熱足湯、體驗不同溫度的養生汗蒸房，或在休息區小睡。",
+            foodTip: "別忘了在汗蒸幕裡喝一杯冰涼香甜的【韓式甜米釀（식혜）】配烤雞蛋，超有韓國旅遊儀式感！",
+            taxiNote: "新世界百貨 1 樓 Spa Land 入口"
+          },
+          {
+            time: "晚上 18:30",
+            nameZh: "廣安里海灘 & 廣安大橋夜景晚餐",
+            nameKr: "광안리 해수욕장",
+            addressKr: "부산 수영구 광안해변로 219",
+            badges: ["🌉 璀璨跨海大橋夜景", "🥞 海鮮煎餅海景餐廳"],
+            transport: "從 Centum City 搭計程車僅 10 分鐘。若剛好遇到「週六晚上」，還能免費欣賞超壯觀的廣安里海面無人機燈光秀！",
+            foodTip: "找間二樓以上面海的餐廳，點份外酥內軟的【海鮮蔥煎餅（해물파전）】搭配蛤蜊刀削麵（바지락칼국수），完全不辣又滿足。",
+            taxiNote: "廣安里海水浴場中心"
+          }
+        ]
+      },
+      {
+        day: 5,
+        title: "海邊悠閒早餐・伴手禮採買・滿載而歸",
+        subtitle: "不趕早班車，最後一眼看海喝早茶、輕鬆買齊釜山海味伴手禮",
+        themeColor: "ocean",
+        items: [
+          {
+            time: "上午 09:30",
+            nameZh: "海雲台海景早茶 & 輕鬆退房",
+            nameKr: "해운대 오션뷰 카페",
+            addressKr: "부산 해운대구 해운대해변로 264",
+            badges: ["☕ 睡到自然醒", "🌊 看最後一眼大海"],
+            transport: "在飯店悠閒享用早餐，或步行到海雲台海邊咖啡廳喝杯熱美式、吃麵包，整理行李並寄放飯店櫃台。",
+            foodTip: "退房前檢查護照、長輩常備藥與隨身充電器是否收妥。",
+            taxiNote: "海雲台海灘大道"
+          },
+          {
+            time: "中午 11:30",
+            nameZh: "海雲台傳統市場 或 E-Mart 採買伴手禮",
+            nameKr: "해운대 전통시장 / 이마트 해운대점",
+            addressKr: "부산 해운대구 좌동순환로 511 (이마트 해운대점)",
+            badges: ["🛍️ 一站式買齊伴手禮", "🍢 暖呼呼釜山魚板湯"],
+            transport: "搭計程車 5 分鐘即可到 E-Mart 海雲台店（室內吹冷氣推推車最輕鬆），或逛平緩的海雲台傳統市場。",
+            foodTip: "必買伴手禮：韓國麻油海苔、古來思／三進魚板（有原味不辣禮盒）、杏仁果零食、玉米鬚茶；午餐喝碗熱騰騰不辣的【釜山魚板湯（어묵탕）】與飯捲。",
+            taxiNote: "E-Mart 海雲台店（大型超市）"
+          },
+          {
+            time: "下午 14:30",
+            nameZh: "前往金海國際機場搭機返家",
+            nameKr: "김해국제공항 국제선",
+            addressKr: "부산 강서구 공항진입로 108",
+            badges: ["🚕 飯店直達出境大廳", "✈️ 建議提早 2.5 小時抵達"],
+            transport: "回飯店拿行李後，直接搭計程車或預約好的機場專車前往金海國際機場「國際線（국제선）」，預留充裕時間辦理退稅與登機。",
+            foodTip: "機場出境區也有咖啡廳與簡餐可稍作休息，帶著滿滿海景回憶開心回家！",
+            taxiNote: "請載我們到金海機場【國際線】出境大廳"
+          }
+        ]
+      }
+    ];
+
+    /* ============================================================
+       2. 韓文點餐求助卡 & 不辣美食資料
+       ============================================================ */
+    const orderingCardsData = [
+      {
+        emoji: "🚫🌶️",
+        zh: "請不要做辣的（完全不辣）",
+        sub: "最萬用！點湯品、炒菜、烤貝殼必示",
+        kr: "맵지 않게 해주세요.",
+        pronounce: "發音參考：梅基 安給 黑珠賽優"
+      },
+      {
+        emoji: "🧂❌",
+        zh: "請不要放辣椒粉、也不要放辣醬",
+        sub: "吃豬肉湯飯、水冷麵、海鮮湯超實用",
+        kr: "고춧가루랑 양념장 빼주세요.",
+        pronounce: "發音參考：口出卡魯郎 羊釀醬 貝珠賽優"
+      },
+      {
+        emoji: "🍲✨",
+        zh: "請幫我們做成「不辣的清湯」",
+        sub: "札嘎其市場煮鮮魚湯、蛤蜊湯必用",
+        kr: "안 맵고 맑은 국물(지리)로 해주세요.",
+        pronounce: "發音參考：安 梅勾 馬跟 苦木 羅 黑珠賽優"
+      },
+      {
+        emoji: "👵🪟",
+        zh: "有長輩同行，請給我們好坐／靠窗的座位",
+        sub: "避免坐需要盤腿的傳統地板座位",
+        kr: "어르신이 계셔서 의자가 편한 자리로 부탁드립니다.",
+        pronounce: "禮貌請求有靠背椅子的舒適座位"
+      },
+      {
+        emoji: "☕💧",
+        zh: "請給我們溫開水（不要冰水）",
+        sub: "韓國餐廳預設多給冰水，長輩需要溫水時超好用",
+        kr: "차가운 물 말고 따뜻한 물 좀 주세요.",
+        pronounce: "發音參考：大德漢 木 宗 珠賽優"
+      },
+      {
+        emoji: "✂️🦀",
+        zh: "請問可以幫我們剪一下嗎？謝謝！",
+        sub: "吃烤肉、長腳蟹、海鮮煎餅時方便長輩入口",
+        kr: "조금 작게 잘라주실 수 있나요? 감사합니다.",
+        pronounce: "禮貌請店員協助剪成好入口的大小"
+      }
+    ];
+
+    const nonSpicyFoodData = [
+      {
+        emoji: "🥣",
+        nameZh: "釜山元祖鮑魚粥",
+        nameKr: "전복죽",
+        tag: "鮮甜暖胃",
+        desc: "以新鮮鮑魚內臟與鮑魚肉細火慢熬，米粒綿密滑順、完全沒有腥味也不辣，是長輩抵達釜山第一餐的首選。",
+        where: "Day 1 海雲台"
+      },
+      {
+        emoji: "🦀",
+        nameZh: "清蒸活體長腳蟹＆蟹膏炒飯",
+        nameKr: "대게 찜 & 게딱지 볶음밥",
+        tag: "原味海味之王",
+        desc: "現挑現蒸鎖住飽滿海味，蟹肉一撥即落、清甜多汁！吃完一定要加點香噴噴的蟹膏海苔炒飯。",
+        where: "Day 2 機張市場"
+      },
+      {
+        emoji: "🐚",
+        nameZh: "原味起司奶油炭烤貝殼",
+        nameKr: "조개구이 (안 맵게)",
+        tag: "海景必吃",
+        desc: "肥美扇貝、文蛤加上香濃起司與奶油炭烤，記得請店家不加辣醬，滿滿鮮甜海汁超迷人。",
+        where: "Day 2 青沙浦"
+      },
+      {
+        emoji: "🍖",
+        nameZh: "釜山豬肉湯飯（原味不辣）",
+        nameKr: "돼지국밥 (다대기 빼고)",
+        tag: "在地靈魂美食",
+        desc: "乳白色濃郁大骨湯搭配軟嫩豬肉片，只要請店家不加辣醬，自己加一點鹹蝦醬與韭菜提鮮，暖心又滿足。",
+        where: "Day 1 海雲台"
+      },
+      {
+        emoji: "🍜",
+        nameZh: "清爽釜山水冷麵（免辣醬）",
+        nameKr: "물밀면 (양념장 빼고)",
+        tag: "春日爽口",
+        desc: "釜山獨有的小麥冷麵，搭配甘甜清爽的冰鎮高湯，記得備註不加辣醬，滑順好入口。",
+        where: "Day 4 溫泉川／Centum"
+      },
+      {
+        emoji: "🥞",
+        nameZh: "酥脆海鮮蔥煎餅",
+        nameKr: "해물파전",
+        tag: "全家共享",
+        desc: "滿滿花枝、蝦仁與清甜大蔥煎至金黃酥脆，沾清爽醬油吃，搭配廣安大橋夜景超享受。",
+        where: "Day 4 廣安里"
+      },
+      {
+        emoji: "🍯",
+        nameZh: "南浦洞元祖堅果黑糖餅",
+        nameKr: "씨앗호떡",
+        tag: "人氣散步點心",
+        desc: "外皮酥香、內餡塞滿葵花子、南瓜子、花生碎與溫熱黑糖，口感豐富且不會太甜，長輩都愛。",
+        where: "Day 3 南浦洞"
+      },
+      {
+        emoji: "🍢",
+        nameZh: "釜山手工魚板湯",
+        nameKr: "부산 어묵탕",
+        tag: "經典必吃",
+        desc: "釜山魚板魚漿比例極高、口感彈牙！挑原味、起司、蔬菜口味泡在昆布蘿蔔清湯裡，微涼春天喝超幸福。",
+        where: "Day 5 海雲台市場"
+      }
+    ];
+
+    /* ============================================================
+       3. 互動式行前打包清單資料
+       ============================================================ */
+    const defaultChecklist = [
+      { id: "c1", category: "衣物穿搭", text: "防風保暖外套（海雲台、松島海邊風大必備）" },
+      { id: "c2", category: "衣物穿搭", text: "洋蔥式上衣＆輕薄圍巾（3-4月日夜溫差大）" },
+      { id: "c3", category: "衣物穿搭", text: "防滑好走的氣墊休閒鞋（減少長輩腳步疲勞）" },
+      { id: "c4", category: "長輩健康", text: "長輩個人常備藥（多帶 2–3 天份＋英文藥單）" },
+      { id: "c5", category: "長輩健康", text: "輕量保溫杯（韓國餐廳多冰水，隨時可裝溫水）" },
+      { id: "c6", category: "長輩健康", text: "腸胃藥、暈車藥、OK繃與護膝／痠痛貼布" },
+      { id: "c7", category: "證件金錢", text: "護照正本（效期 6 個月以上）＆ 旅遊平安險" },
+      { id: "c8", category: "證件金錢", text: "海外回饋信用卡、少量韓元現金（市場／小吃用）" },
+      { id: "c9", category: "預約＆App", text: "提早 2–4 週預訂「海雲台天空膠囊列車」車票" },
+      { id: "c10", category: "預約＆App", text: "手機下載 Uber (UT) / Kakao T 與 Naver Map" },
+      { id: "c11", category: "電子雜物", text: "韓國圓孔轉接頭（220V）與行動電源" },
+      { id: "c12", category: "貼心小物", text: "太陽眼鏡、摺疊晴雨傘與濕紙巾（吃蟹超好用）" }
+    ];
+
+    /* ============================================================
+       4. 狀態管理與初始化
+       ============================================================ */
+    let currentDayFilter = 'all';
+    let currentTaxiAddress = '';
+    const STORAGE_KEY_CHECKLIST = 'busan_2027_checklist_v1';
+    const STORAGE_KEY_FONT = 'busan_2027_fontsize_v1';
+
+    function initApp() {
+      // 載入字體偏好
+      try {
+        const savedFont = localStorage.getItem(STORAGE_KEY_FONT);
+        if (savedFont === 'large') setFontSize('large', false);
+      } catch (e) {}
+
+      renderItinerary();
+      renderOrderingCards();
+      renderFoodList();
+      renderChecklist();
+    }
+
+    /* ============================================================
+       5. 長輩大字體切換功能
+       ============================================================ */
+    function setFontSize(mode, save = true) {
+      const htmlEl = document.documentElement;
+      const btnNormal = document.getElementById('btnFontNormal');
+      const btnLarge = document.getElementById('btnFontLarge');
+
+      if (mode === 'large') {
+        htmlEl.classList.add('large-font');
+        btnLarge.className = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-ocean-600 text-white shadow-sm';
+        btnNormal.className = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all text-slate-700 hover:text-ocean-700';
+      } else {
+        htmlEl.classList.remove('large-font');
+        btnNormal.className = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-ocean-600 text-white shadow-sm';
+        btnLarge.className = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all text-slate-700 hover:text-ocean-700';
+      }
+
+      if (save) {
+        try { localStorage.setItem(STORAGE_KEY_FONT, mode); } catch (e) {}
+        showToast(mode === 'large' ? '已切換為大字體模式' : '已切換為標準字體');
+      }
+    }
+
+    /* ============================================================
+       6. 主分頁切換與 Day 篩選
+       ============================================================ */
+    function switchMainTab(tabName) {
+      const panels = ['itinerary', 'food', 'prep'];
+      panels.forEach(p => {
+        const panelEl = document.getElementById(`panel-${p}`);
+        const btnEl = document.getElementById(`tab-${p}`);
+        if (p === tabName) {
+          panelEl.classList.remove('hidden');
+          btnEl.className = 'main-tab-btn flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-2 rounded-2xl text-xs sm:text-base font-bold transition-all bg-ocean-600 text-white shadow-md';
+        } else {
+          panelEl.classList.add('hidden');
+          btnEl.className = 'main-tab-btn flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-2 rounded-2xl text-xs sm:text-base font-bold transition-all bg-sand-100 text-slate-700 hover:bg-ocean-50';
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterDay(dayValue) {
+      currentDayFilter = dayValue;
+      document.querySelectorAll('.day-filter-btn').forEach(btn => {
+        const isSelected = String(btn.dataset.day) === String(dayValue);
+        if (isSelected) {
+          btn.className = 'day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-ocean-700 text-white shadow-sm';
+        } else {
+          btn.className = 'day-filter-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all bg-white text-slate-700 border border-sand-200 hover:border-ocean-400';
+        }
+      });
+      renderItinerary();
+    }
+
+    /* ============================================================
+       7. 渲染每日行程卡片
+       ============================================================ */
+    function renderItinerary() {
+      const container = document.getElementById('itineraryContainer');
+      const filteredDays = currentDayFilter === 'all'
+        ? itineraryData
+        : itineraryData.filter(d => d.day === Number(currentDayFilter));
+
+      container.innerHTML = filteredDays.map(dayObj => {
+        const headerBg = dayObj.themeColor === 'sakura'
+          ? 'from-sakura-500 to-rose-400'
+          : 'from-ocean-700 to-ocean-500';
+
+        const cardsHtml = dayObj.items.map(item => {
+          const badgesHtml = item.badges.map(b =>
+            `<span class="inline-block bg-ocean-50 text-ocean-800 border border-ocean-200/70 px-2.5 py-1 rounded-xl text-xs font-bold">${b}</span>`
+          ).join('');
+
+          // 安全跳脫引號供 onclick 使用
+          const safeZh = escapeAttr(item.nameZh);
+          const safeKr = escapeAttr(item.nameKr);
+          const safeAddr = escapeAttr(item.addressKr);
+          const safeNote = escapeAttr(item.taxiNote || '');
+
+          return `
+            <article class="bg-white border border-sand-200 rounded-3xl p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+                <div class="space-y-1">
+                  <span class="inline-block bg-sand-100 text-ocean-800 px-3 py-1 rounded-full text-xs font-black tracking-wide">
+                    🕒 ${item.time}
+                  </span>
+                  <h4 class="text-lg sm:text-xl font-black text-slate-900 leading-snug pt-0.5">
+                    ${item.nameZh}
+                  </h4>
+                  <p class="font-kr text-sm font-bold text-slate-500">${item.nameKr}</p>
+                </div>
+
+                <!-- 司機指指卡按鈕 -->
+                <button onclick="openTaxiModal('${safeZh}', '${safeKr}', '${safeAddr}', '${safeNote}')"
+                  class="self-start flex-shrink-0 bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2.5 rounded-2xl text-sm transition-all shadow-sm flex items-center gap-2 active:scale-95">
+                  <span>🚕</span>
+                  <span>給司機看</span>
+                </button>
+              </div>
+
+              <!-- 樂齡友善標籤 -->
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                ${badgesHtml}
+              </div>
+
+              <!-- 交通與不辣美食貼心說明 -->
+              <div class="space-y-2.5 bg-sand-50 rounded-2xl p-4 border border-sand-200/70 text-sm leading-relaxed">
+                <p class="text-slate-700">
+                  <strong class="text-ocean-900">🚌 輕鬆交通：</strong>${item.transport}
+                </p>
+                <p class="text-slate-700">
+                  <strong class="text-sakura-600">🍽️ 貼心亮點：</strong>${item.foodTip}
+                </p>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        return `
+          <div class="space-y-4">
+            <div class="bg-gradient-to-r ${headerBg} text-white rounded-3xl px-5 py-4 shadow-sm">
+              <div class="flex items-center gap-2.5">
+                <span class="bg-white/25 backdrop-blur-sm px-3 py-1 rounded-xl text-sm font-black">DAY ${dayObj.day}</span>
+                <h3 class="text-lg sm:text-xl font-black">${dayObj.title}</h3>
+              </div>
+              <p class="text-white/90 text-xs sm:text-sm mt-1.5 font-medium">${dayObj.subtitle}</p>
+            </div>
+            <div class="space-y-4">
+              ${cardsHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* ============================================================
+       8. 渲染不辣點餐卡 & 美食清單
+       ============================================================ */
+    function renderOrderingCards() {
+      const grid = document.getElementById('orderingCardsGrid');
+      grid.innerHTML = orderingCardsData.map(card => `
+        <button onclick="openOrderModal('${escapeAttr(card.emoji)}', '${escapeAttr(card.kr)}', '${escapeAttr(card.pronounce)}', '${escapeAttr(card.zh)}', '${escapeAttr(card.sub)}')"
+          class="text-left bg-white hover:bg-sakura-50 border-2 border-sakura-200 hover:border-sakura-400 rounded-2xl p-4 transition-all shadow-sm active:scale-[0.98] flex flex-col justify-between gap-2">
+          <div class="flex items-center justify-between w-full">
+            <span class="text-2xl">${card.emoji}</span>
+            <span class="text-xs font-bold text-sakura-600 bg-sakura-100 px-2.5 py-1 rounded-full">點擊放大 ↗</span>
+          </div>
+          <div>
+            <p class="font-black text-slate-900 text-base leading-snug">${card.zh}</p>
+            <p class="font-kr text-sm font-bold text-ocean-800 mt-1">${card.kr}</p>
+          </div>
+          <p class="text-xs text-slate-500">${card.sub}</p>
+        </button>
+      `).join('');
+    }
+
+    function renderFoodList() {
+      const grid = document.getElementById('foodListGrid');
+      grid.innerHTML = nonSpicyFoodData.map(food => `
+        <div class="bg-white border border-sand-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between gap-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="text-3xl">${food.emoji}</span>
+                <div>
+                  <h4 class="font-black text-lg text-slate-900">${food.nameZh}</h4>
+                  <p class="font-kr text-sm font-bold text-ocean-700">${food.nameKr}</p>
+                </div>
+              </div>
+              <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-xl text-xs font-bold flex-shrink-0">
+                ${food.tag}
+              </span>
+            </div>
+            <p class="text-sm text-slate-700 leading-relaxed pt-1">${food.desc}</p>
+          </div>
+
+          <div class="flex items-center justify-between pt-3 border-t border-sand-200/80">
+            <span class="text-xs font-bold text-slate-500">📍 建議品嚐：${food.where}</span>
+            <button onclick="openOrderModal('${escapeAttr(food.emoji)}', '${escapeAttr(food.nameKr)} 주세요!', '請給我們這道料理（不要辣）', '${escapeAttr(food.nameZh)}', '맵지 않게 해주세요（請做不辣的）')"
+              class="text-xs font-bold bg-ocean-50 hover:bg-ocean-600 text-ocean-800 hover:text-white px-3 py-1.5 rounded-xl transition-colors">
+              放大韓文點餐 ↗
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ============================================================
+       9. 互動式行前打包清單 (localStorage 記憶)
+       ============================================================ */
+    function getSavedChecklist() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY_CHECKLIST)) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function renderChecklist() {
+      const saved = getSavedChecklist();
+      const container = document.getElementById('checklistContainer');
+
+      container.innerHTML = defaultChecklist.map(item => {
+        const isChecked = !!saved[item.id];
+        return `
+          <label class="flex items-start gap-3 p-3.5 rounded-2xl border-2 cursor-pointer transition-all select-none ${
+            isChecked
+              ? 'bg-emerald-50/70 border-emerald-300'
+              : 'bg-sand-50 border-sand-200 hover:border-ocean-300'
+          }">
+            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleCheckItem('${item.id}')"
+              class="mt-1 w-5 h-5 rounded-md accent-ocean-600 cursor-pointer flex-shrink-0">
+            <div class="min-w-0">
+              <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded-md mb-1 ${
+                isChecked ? 'bg-emerald-200/70 text-emerald-900' : 'bg-white text-ocean-800 border border-sand-200'
+              }">${item.category}</span>
+              <p class="text-sm font-bold leading-snug ${isChecked ? 'line-through text-slate-400' : 'text-slate-800'}">
+                ${item.text}
+              </p>
+            </div>
+          </label>
+        `;
+      }).join('');
+
+      updateChecklistProgress(saved);
+    }
+
+    function toggleCheckItem(id) {
+      const saved = getSavedChecklist();
+      saved[id] = !saved[id];
+      try {
+        localStorage.setItem(STORAGE_KEY_CHECKLIST, JSON.stringify(saved));
+      } catch (e) {}
+      renderChecklist();
+    }
+
+    function updateChecklistProgress(saved) {
+      const total = defaultChecklist.length;
+      const done = defaultChecklist.filter(i => saved[i.id]).length;
+      const pct = Math.round((done / total) * 100);
+      document.getElementById('checklistProgressText').textContent = `${done} / ${total} (${pct}%)`;
+      document.getElementById('checklistProgressBar').style.width = `${pct}%`;
+    }
+
+    function resetChecklist() {
+      try {
+        localStorage.removeItem(STORAGE_KEY_CHECKLIST);
+      } catch (e) {}
+      renderChecklist();
+      showToast('已清除勾選紀錄，可重新整理行李');
+    }
+
+    /* ============================================================
+       10. 彈窗控制：計程車指指卡 & 點餐卡
+       ============================================================ */
+    function openTaxiModal(zhName, krName, krAddress, note) {
+      currentTaxiAddress = krAddress;
+      document.getElementById('taxiZhName').textContent = zhName;
+      document.getElementById('taxiKrName').textContent = krName;
+      document.getElementById('taxiKrAddress').textContent = krAddress;
+
+      const noteWrap = document.getElementById('taxiNoteWrap');
+      if (note) {
+        document.getElementById('taxiNote').textContent = note;
+        noteWrap.classList.remove('hidden');
+      } else {
+        noteWrap.classList.add('hidden');
+      }
+
+      const modal = document.getElementById('taxiModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openOrderModal(emoji, krText, pronounce, zhText, subText) {
+      document.getElementById('orderEmoji').textContent = emoji;
+      document.getElementById('orderKrText').textContent = krText;
+      document.getElementById('orderPronounce').textContent = pronounce;
+      document.getElementById('orderZhText').textContent = zhText;
+      document.getElementById('orderSubText').textContent = subText;
+
+      const modal = document.getElementById('orderModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBackdrop(event, modalId) {
+      if (event.target.id === modalId) {
+        closeModal(modalId);
+      }
+    }
+
+    // 使用相容於 iframe 的 execCommand 複製韓文地址
+    function copyTaxiAddress() {
+      if (!currentTaxiAddress) return;
+      const tempInput = document.createElement('textarea');
+      tempInput.value = currentTaxiAddress;
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast('已複製韓文地址！可直接貼到叫車 App');
+      } catch (err) {
+        showToast('複製失敗，請長按地址手動複製');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    /* ============================================================
+       11. 工具函式：Toast 提示與屬性跳脫
+       ============================================================ */
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.remove('opacity-0', 'translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2400);
+    }
+
+    function escapeAttr(str) {
+      return String(str)
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '&quot;');
+    }
+
+    // 支援按 ESC 鍵關閉彈窗
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal('taxiModal');
+        closeModal('orderModal');
+      }
+    });
+
+    // 頁面載入完成後初始化
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
